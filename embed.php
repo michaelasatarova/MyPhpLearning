@@ -109,12 +109,9 @@ function name($greeting){
     echo $greeting;
     }
     
-    name("Hello from function");
-    
-
+ $name= name("Hello from function");
+   
 ?>
-
-
 
 </body>
 </html>
