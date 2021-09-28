@@ -5,12 +5,25 @@ if(isset($_POST['submit'])){
    $password= $_POST['password'];
 
 
+
+
    $connections = mysqli_connect('localhost', 'root', '', 'loginapp');
         if($connections){
             echo "we are connected";
         }else{
             die("failed");
         }
+    /* hackers preventios */     
+   $username = mysqli_real_escape_string($connections, $username);
+   $password = mysqli_real_escape_string($connections, $password);
+
+   /* password crypting */
+    $hashFormat = '$2Y$10$';
+    $salt = "iusesometwentystring22";
+    $hash_and_salt = $hashFormat . $salt;
+    
+    $encrypt_password = crypt($password, $hash_and_salt);
+
 
   /*   vlozenie hodnoty ado riadku username a password z hodnoty ktoru sme dostali a ulozili v premennej $username a $password */
  /*        $query = "INSERT INTO users(username, password)";
